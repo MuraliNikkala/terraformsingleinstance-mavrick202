@@ -30,6 +30,14 @@ resource "aws_internet_gateway" "default" {
     }
 }
 
+terraform {
+backend "s3" {
+  bucket = "devopsclassremotestatebuc"
+  key    = "myterraform.tfstate"
+  region = "us-east-1"
+  }
+}
+
 resource "aws_subnet" "subnet1-public" {
     vpc_id = "${aws_vpc.default.id}"
     cidr_block = "${var.public_subnet1_cidr}"
